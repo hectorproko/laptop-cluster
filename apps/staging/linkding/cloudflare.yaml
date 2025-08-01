@@ -69,8 +69,9 @@ data:
     # Name of the tunnel you want to run
     
     tunnel: ldpi
-
-    credentials-file: /etc/cloudflared/creds/credentials.jso
+    # Secret tunnel-credentials has both these contents
+    origincert: /etc/cloudflared/creds/cert.pem
+    credentials-file: /etc/cloudflared/creds/credentials.json
 
     # Serves the metrics server under /metrics and the readiness server under /ready
     metrics: 0.0.0.0:2000
