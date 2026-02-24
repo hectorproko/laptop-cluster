@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: audiobookshelf
   namespace: audiobookshelf
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   ingressClassName: traefik
   rules:
