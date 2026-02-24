@@ -21,6 +21,9 @@ spec:
           image: sissbruecker/linkding:1.45.0
           ports:
             - containerPort: 9090
+          env:
+          - name: LD_CSRF_TRUSTED_ORIGINS
+            value: "https://ldpi.hectorprokos.com"
           envFrom:
             - secretRef:
                 name: linkding-user
