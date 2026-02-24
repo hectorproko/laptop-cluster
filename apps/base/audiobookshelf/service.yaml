@@ -4,7 +4,8 @@ metadata:
   name: audiobookshelf
 spec:
   ports:
-    - port: 13378
+    - protocol: TCP
+      port: 13378
       targetPort: 80
   selector:
     app: audiobookshelf
