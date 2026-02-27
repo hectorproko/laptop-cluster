@@ -4,5 +4,6 @@ resources:
   - namespace.yaml
   - repository.yaml
   - release.yaml
-  - postgres/*
+  - postgres/cluster.yaml
+  - postgres/secret.yaml
   - storage.yaml
