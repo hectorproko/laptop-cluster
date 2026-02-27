@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-library-pvc #volume for photos/vidoes
+  namespace: immich
+spec:
+  accessModes:
+    - ReadWriteMany #multiple Immich pods need to access it simultaneously
+  resources:
+    requests:
+      storage: 500Gi
+  #storageClass: your-class

@@ -1,0 +1,59 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: immich
+  namespace: immich
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: immich
+      version: "0.10.3"
+      sourceRef:
+        kind: HelmRepository
+        name: immich-charts
+        namespace: immich
+      interval: 12h
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  driftDetection:
+    mode: enabled
+
+  values:
+    immich:
+      persistence:
+        library:
+          existingClaim: immich-library-pvc  # the pre-created PVC
+    machine-learning:
+      persistence:
+        cache:
+          type: persistentVolumeClaim  # change from default emptyDir
+          size: 10Gi
+          accessMode: ReadWriteMany
+          # storageClass: your-class
+    valkey:
+      enabled: true
+    env:
+      DB_HOSTNAME:
+        valueFrom:
+          secretKeyRef:
+            name: immich-postgresql-app   # auto-created by CNPG
+            key: host
+      DB_USERNAME:
+        valueFrom:
+          secretKeyRef:
+            name: immich-postgresql-app
+            key: username
+      DB_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: immich-postgresql-app
+            key: password
+      DB_DATABASE_NAME:
+        valueFrom:
+          secretKeyRef:
+            name: immich-postgresql-app
+            key: dbname
+      DB_VECTOR_EXTENSION: vectorchord   # tell immich which extension to use
