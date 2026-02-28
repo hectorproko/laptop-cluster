@@ -26,6 +26,20 @@ spec:
       persistence:
         library:
           existingClaim: immich-library-pvc  # the pre-created PVC
+      env:
+        DB_HOSTNAME: immich-postgresql-rw.immich.svc.cluster.local
+        DB_DATABASE_NAME: immich
+        DB_USERNAME:
+          valueFrom:
+            secretKeyRef:
+              name: immich-postgres-secret
+              key: username
+        DB_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: immich-postgres-secret
+              key: password
+        DB_VECTOR_EXTENSION: vectorchord
     machine-learning:
       persistence:
         cache:
@@ -35,17 +49,3 @@ spec:
           # storageClass: your-class
     valkey:
       enabled: true
-    env:
-      DB_HOSTNAME: immich-postgresql-rw.immich.svc.cluster.local
-      DB_DATABASE_NAME: immich
-      DB_USERNAME:
-        valueFrom:
-          secretKeyRef:
-            name: immich-postgres-secret
-            key: username
-      DB_PASSWORD:
-        valueFrom:
-          secretKeyRef:
-            name: immich-postgres-secret
-            key: password
-      DB_VECTOR_EXTENSION: vectorchord
