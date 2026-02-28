@@ -31,7 +31,7 @@ spec:
         cache:
           type: persistentVolumeClaim  # change from default emptyDir
           size: 10Gi
-          accessMode: ReadWriteMany
+          accessMode: ReadWriteOnce # had ReadWriteMany so multiple Immich pods access it simultaneously, but local-path only supports `ReadWriteOnce`
           # storageClass: your-class
     valkey:
       enabled: true

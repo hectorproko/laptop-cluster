@@ -5,7 +5,7 @@ metadata:
   namespace: immich
 spec:
   accessModes:
-    - ReadWriteMany #multiple Immich pods need to access it simultaneously
+    - ReadWriteOnce # had ReadWriteMany so multiple Immich pods access it simultaneously, but local-path only supports `ReadWriteOnce`
   resources:
     requests:
       storage: 500Gi
