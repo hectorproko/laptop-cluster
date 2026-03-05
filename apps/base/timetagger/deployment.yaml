@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timetagger
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: timetagger
+  template:
+    metadata:
+      labels:
+        app: timetagger
+    spec:
+      containers:
+      - name: timetagger
+        image: ghcr.io/almarklein/timetagger
+        ports:
+        - containerPort: 80
+        env:
+        - name: TIMETAGGER_BIND
+          value: "0.0.0.0:80"
+        - name: TIMETAGGER_DATADIR
+          value: "/root/_timetagger"
+        - name: TIMETAGGER_LOG_LEVEL
+          value: "info"
+        - name: TIMETAGGER_CREDENTIALS
+          value: "test:$2a$08$zMsjPEGdXHzsu0N/felcbuWrffsH4.4ocDWY5oijsZ0cbwSiLNA8."
+        volumeMounts:
+        - name: data
+          mountPath: /root/_timetagger
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: timetagger-data
