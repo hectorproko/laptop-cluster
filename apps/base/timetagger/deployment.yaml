@@ -21,15 +21,16 @@ spec:
         image: ghcr.io/almarklein/timetagger:v26.1.3-nonroot
         ports:
         - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: timetagger-config
         env:
-        - name: TIMETAGGER_BIND
-          value: "0.0.0.0:80"
-        - name: TIMETAGGER_DATADIR
-          value: "/home/timetagger/_timetagger"
-        - name: TIMETAGGER_LOG_LEVEL
-          value: "info"
         - name: TIMETAGGER_CREDENTIALS
-          value: "test:$2a$08$zMsjPEGdXHzsu0N/felcbuWrffsH4.4ocDWY5oijsZ0cbwSiLNA8."
+          #value: "test:$2a$08$zMsjPEGdXHzsu0N/felcbuWrffsH4.4ocDWY5oijsZ0cbwSiLNA8."
+          valueFrom:
+            secretKeyRef:
+              name: timetagger-credentials
+              key: credentials
         volumeMounts:
         - name: data
           mountPath: /home/timetagger/_timetagger

@@ -5,5 +5,7 @@ resources:
   - deployment.yaml
   - storage.yaml
   - service.yaml
+  - timetagger-credentials.yaml
+  - configmap.yaml
   
 
