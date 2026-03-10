@@ -1,6 +1,7 @@
 apiVersion: ctlptl.dev/v1alpha1
 kind: Registry
-name: ctlptl-registry
+metadata:
+  name: ctlptl-registry
 port: 5005
 ---
 apiVersion: ctlptl.dev/v1alpha1
