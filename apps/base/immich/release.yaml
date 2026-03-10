@@ -22,6 +22,11 @@ spec:
     mode: enabled
 
   values:
+    # Without this, the chart sets DB_HOSTNAME=database by default and
+    # overrides any custom env vars you provide.
+    postgresql:
+      enabled: false
+
     immich:
       persistence:
         library:
@@ -47,7 +52,9 @@ spec:
             secretKeyRef:
               name: immich-database-app
               key: dbname
-
+        # Tell Immich to use vectorchord instead of the default pgvecto.rs
+        DB_VECTOR_EXTENSION: vectorchord
+        
     valkey:
       enabled: true
 
