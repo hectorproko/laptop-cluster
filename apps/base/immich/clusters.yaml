@@ -6,6 +6,8 @@ port: 5005
 ---
 apiVersion: ctlptl.dev/v1alpha1
 kind: Cluster
+metadata:
+  name: immich-local
 product: kind
 registry: ctlptl-registry
 kindV1Alpha4Cluster:
