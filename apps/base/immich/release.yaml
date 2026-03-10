@@ -21,6 +21,37 @@ spec:
   driftDetection:
     mode: enabled
 
+values:
+  env:
+    DB_HOSTNAME:
+      valueFrom:
+        secretKeyRef:
+          name: immich-database-app
+          key: host
+    DB_USERNAME:
+      valueFrom:
+        secretKeyRef:
+          name: immich-database-app
+          key: user
+    DB_PASSWORD:
+      valueFrom:
+        secretKeyRef:
+          name: immich-database-app
+          key: password
+    DB_DATABASE_NAME:
+      valueFrom:
+        secretKeyRef:
+          name: immich-database-app
+          key: dbname
+
+valkey:
+  enabled: true
+
+immich:
+  persistence:
+    library:
+      existingClaim: immich-library-pvc
+
   # values:
   #   immich:
   #     persistence:
@@ -47,5 +78,5 @@ spec:
   #         size: 10Gi
   #         accessMode: ReadWriteOnce # had ReadWriteMany so multiple Immich pods access it simultaneously, but local-path only supports `ReadWriteOnce`
   #         # storageClass: your-class
-  #   valkey:
-  #     enabled: true
+
+
