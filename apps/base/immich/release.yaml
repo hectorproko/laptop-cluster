@@ -26,29 +26,29 @@ spec:
       persistence:
         library:
           existingClaim: immich-library-pvc
-      env:
-        DB_HOSTNAME:
-          valueFrom:
-            secretKeyRef:
-              name: immich-database-app
-              key: host
-        DB_USERNAME:
-          valueFrom:
-            secretKeyRef:
-              name: immich-database-app
-              key: username
-        DB_PASSWORD:
-          valueFrom:
-            secretKeyRef:
-              name: immich-database-app
-              key: password
-        DB_DATABASE_NAME:
-          valueFrom:
-            secretKeyRef:
-              name: immich-database-app
-              key: dbname
-        # Tell Immich to use vectorchord instead of the default pgvecto.rs
-        DB_VECTOR_EXTENSION: vectorchord
+    env:
+      DB_HOSTNAME:
+        valueFrom:
+          secretKeyRef:
+            name: immich-database-app
+            key: host
+      DB_USERNAME:
+        valueFrom:
+          secretKeyRef:
+            name: immich-database-app
+            key: user
+      DB_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: immich-database-app
+            key: password
+      DB_DATABASE_NAME:
+        valueFrom:
+          secretKeyRef:
+            name: immich-database-app
+            key: dbname
+      # Tell Immich to use vectorchord instead of the default pgvecto.rs
+      DB_VECTOR_EXTENSION: vectorchord
 
     valkey:
       enabled: true
