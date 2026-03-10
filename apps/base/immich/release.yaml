@@ -33,16 +33,12 @@ spec:
               DB_PASSWORD: k1UmNULWEBv8cv4vZyP7n06HoHcabDq7lyHYThWSTgCa0ADwMr7NfqcogJJcG9zD
               DB_DATABASE_NAME: immich
               DB_VECTOR_EXTENSION: vectorchord
-              
     valkey:
       enabled: true
-
-
-  # values:
-  #   immich:
-  #     persistence:
-  #       library:
-  #         existingClaim: immich-library-pvc  # the pre-created PVC
+    immich:
+      persistence:
+        library:
+          existingClaim: immich-library-pvc  # the pre-created PVC
   #   env:
   #     DB_HOSTNAME: immich-postgresql-rw.immich.svc.cluster.local
   #     DB_DATABASE_NAME: immich
