@@ -44,13 +44,12 @@ spec:
             name: immich-database-app
             key: dbname
 
-valkey:
-  enabled: true
+    valkey:
+      enabled: true
 
-immich:
-  persistence:
-    library:
-      existingClaim: immich-library-pvc
+    persistence:
+      library:
+        existingClaim: immich-library-pvc
 
   # values:
   #   immich:
