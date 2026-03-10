@@ -22,34 +22,18 @@ spec:
     mode: enabled
 
   values:
-    immich:
-      persistence:
-        library:
-          existingClaim: immich-library-pvc
-    env:
-      DB_HOSTNAME: immich-database-rw
-        # valueFrom:
-        #   secretKeyRef:
-        #     name: immich-database-app
-        #     key: host
-      DB_USERNAME: app
-        # valueFrom:
-        #   secretKeyRef:
-        #     name: immich-database-app
-        #     key: user
-      DB_PASSWORD: k1UmNULWEBv8cv4vZyP7n06HoHcabDq7lyHYThWSTgCa0ADwMr7NfqcogJJcG9zD
-        # valueFrom:
-        #   secretKeyRef:
-        #     name: immich-database-app
-        #     key: password
-      DB_DATABASE_NAME: immich
-        # valueFrom:
-        #   secretKeyRef:
-        #     name: immich-database-app
-        #     key: dbname
-      # Tell Immich to use vectorchord instead of the default pgvecto.rs
-      DB_VECTOR_EXTENSION: vectorchord
-
+    # Shared env across all Immich components (matches chart's top-level controllers block)
+    controllers:
+      main:
+        containers:
+          main:
+            env:
+              DB_HOSTNAME: immich-database-rw
+              DB_USERNAME: app
+              DB_PASSWORD: k1UmNULWEBv8cv4vZyP7n06HoHcabDq7lyHYThWSTgCa0ADwMr7NfqcogJJcG9zD
+              DB_DATABASE_NAME: immich
+              DB_VECTOR_EXTENSION: vectorchord
+              
     valkey:
       enabled: true
 
