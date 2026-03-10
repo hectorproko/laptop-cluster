@@ -17,6 +17,8 @@ spec:
   bootstrap:
     initdb:
       # TODO: Use managed extensions (pg 18)
+      database: immich            # This triggers secret creation for this DB
+      owner: app   
       postInitApplicationSQL:
         # Commands based on: https://immich.app/docs/administration/postgres-standalone/#without-superuser-permission
         - CREATE EXTENSION vchord CASCADE;
