@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: immich
 resources:
   - ../../base/immich/
-  #- ingress.yaml
+  - ingress.yaml
