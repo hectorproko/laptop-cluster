@@ -21,8 +21,26 @@ spec:
   driftDetection:
     mode: enabled
 
- #values: #inside spec
- 
+  dependsOn:
+    - name: nextcloud-database
+    
+  values: #inside spec
+    mariadb:
+      enabled: false
 
-
-
+    externalDatabase:
+      enabled: true
+      type: postgresql
+      existingSecret: 
+        enabled: true
+        secretName: nextcloud-database-app # CNPG has predictable secret names
+        usernameKey: username
+        passwordKey: password
+        hostKey: host
+        databaseKey: dbname
+    persistence:
+      enabled: true
+      existingClaim: nextcloud-app-pvc
+      nextcloudData:
+        enabled: true
+        existingClaim: nextcloud-data-pvc

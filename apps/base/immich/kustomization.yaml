@@ -1,10 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - cloudnative-pg.yaml
+  - database.yaml
   #- service.yaml # immich chart auto-creates its own service, so this is not needed 
   - namespace.yaml
   - repository.yaml
   - release.yaml
   - storage.yaml
-  #- values.yaml
