@@ -31,13 +31,15 @@ spec:
     externalDatabase:
       enabled: true
       type: postgresql
+      host: nextcloud-database-rw
+      database: nextcloud
       existingSecret: 
         enabled: true
         secretName: nextcloud-database-app # CNPG has predictable secret names
         usernameKey: username
         passwordKey: password
-        hostKey: host
-        databaseKey: dbname
+        #hostKey: host
+        #databaseKey: dbname
     persistence:
       enabled: true
       existingClaim: nextcloud-app-pvc
