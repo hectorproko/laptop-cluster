@@ -21,8 +21,8 @@ spec:
   driftDetection:
     mode: enabled
 
-  dependsOn:
-    - name: nextcloud-database
+  #dependsOn:
+    #- name: nextcloud-database
     
   values: #inside spec
     mariadb:
