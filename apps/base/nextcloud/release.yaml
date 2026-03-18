@@ -28,6 +28,9 @@ spec:
     mariadb:
       enabled: false
 
+    nextcloud:
+      host: nextcloud.hectorprokos.com
+
     internalDatabase:
       enabled: false
 
